@@ -19,10 +19,6 @@ export class App extends Component {
 
   async componentDidUpdate(prevProps, prevState) {
     const { httpQuery, page, } = this.state;
-    if (prevState.httpQuery.length > 0 && prevState.httpQuery !== httpQuery) {
-      this.setState({ images: [],});
-    };
-
     if (prevState.httpQuery !== httpQuery || page > prevState.page) {
       try {
         this.setState({ loading: true, })
@@ -69,7 +65,11 @@ export class App extends Component {
         theme: "colored",
       });      
     };
-    this.setState({ httpQuery: inputedQuery, page: 1, });
+    this.setState({
+      httpQuery: inputedQuery,
+      page: 1,
+      images: [],
+    });
   };
 
   handleButtonClick = () => {
